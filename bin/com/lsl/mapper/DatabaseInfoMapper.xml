@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsl.mapper.DatabaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lsl.po.DatabaseInfo" >
+    <id column="databaseid" property="databaseid" jdbcType="INTEGER" />
+    <result column="database_name" property="databaseName" jdbcType="VARCHAR" />
+    <result column="instanceid" property="instanceid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    databaseid, database_name, instanceid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lsl.po.DatabaseInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from database_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from database_info
+    where databaseid = #{databaseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from database_info
+    where databaseid = #{databaseid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsl.po.DatabaseInfoExample" >
+    delete from database_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsl.po.DatabaseInfo" >
+    insert into database_info (databaseid, database_name, instanceid
+      )
+    values (#{databaseid,jdbcType=INTEGER}, #{databaseName,jdbcType=VARCHAR}, #{instanceid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsl.po.DatabaseInfo" >
+    insert into database_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="databaseid != null" >
+        databaseid,
+      </if>
+      <if test="databaseName != null" >
+        database_name,
+      </if>
+      <if test="instanceid != null" >
+        instanceid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="databaseid != null" >
+        #{databaseid,jdbcType=INTEGER},
+      </if>
+      <if test="databaseName != null" >
+        #{databaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="instanceid != null" >
+        #{instanceid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsl.po.DatabaseInfoExample" resultType="java.lang.Integer" >
+    select count(*) from database_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update database_info
+    <set >
+      <if test="record.databaseid != null" >
+        databaseid = #{record.databaseid,jdbcType=INTEGER},
+      </if>
+      <if test="record.databaseName != null" >
+        database_name = #{record.databaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instanceid != null" >
+        instanceid = #{record.instanceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update database_info
+    set databaseid = #{record.databaseid,jdbcType=INTEGER},
+      database_name = #{record.databaseName,jdbcType=VARCHAR},
+      instanceid = #{record.instanceid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsl.po.DatabaseInfo" >
+    update database_info
+    <set >
+      <if test="databaseName != null" >
+        database_name = #{databaseName,jdbcType=VARCHAR},
+      </if>
+      <if test="instanceid != null" >
+        instanceid = #{instanceid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where databaseid = #{databaseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsl.po.DatabaseInfo" >
+    update database_info
+    set database_name = #{databaseName,jdbcType=VARCHAR},
+      instanceid = #{instanceid,jdbcType=INTEGER}
+    where databaseid = #{databaseid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/loginstyle.css">
+  </head>
+  <body>
+    <div class="logo">
+      <img src="img/logo.png" alt="log">
+      <span>MySQL备份管理系统</span>
+    </div>
+    <div class="container">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text" name="username" id="username" class="form-control" placeholder="用户名" autofocus>
+      </div><span class="errorUsernameInput usernameInput"></span><br>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-lock"></span>
+        </span>
+        <input type="password" name="password"  id="password" class="form-control" placeholder="密码">
+      </div><span class="errorPasswordInput passwordInput"></span>
+      <div class="form-group">
+        <div class="checkbox">
+          <label><input type="checkbox" style="color:white" id="remember-password">记住密码</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-default" id="login">登录</button>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="scripts/loginmain.js"></script>
+  </body>
+</html>

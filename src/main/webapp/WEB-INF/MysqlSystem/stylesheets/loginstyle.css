@@ -1,0 +1,40 @@
+body{
+  background-image: url("../img/background.png");
+}
+.logo{
+  margin :0 auto;
+  text-align: center;
+  margin-top: 200px;
+  color: white;
+  font-size: 50px;
+  font-weight: lighter;
+}
+.container{
+  width:18%;
+  margin-top: 60px;
+  padding-top: 20px;
+}
+.container input {
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  border-left: 0;
+  color: white;
+  border-radius: 0;
+}
+.container button {
+  border: 1px solid white;
+  color: black;
+  border-radius: 0;
+}
+.container span{
+  background: rgba(0, 0, 0, 0);
+}
+.btn:hover{
+  border: 1px solid blue;
+}
+.errorUsernameInput, .errorPasswordInput{
+  display: none;
+}
+.btn{
+  width: 100%
+}

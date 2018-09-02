@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+  <title>Mysql备份管理系统</title>
+</head>
+
+<body>
+  <div class="header">
+
+    <div class="header-logo">
+      <img src="img/logo.png" alt="logo">&nbsp&nbsp&nbsp<span>MYSQL备份管理系统</span>
+    </div>
+
+    <div class="header-user">
+      <div class="form-group database-select">
+        <select class="form-control dbOption" name="database">
+            <option value="请选择你的实例" selected>请选择你的实例</option>
+        </select>
+      </div>
+      <div class="username">
+        <img src="img/user.png" style="zoom:80%" alt="user"><span class="userName" style="color:white">xxx</span></span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="main-tap">
+    <ul class="main-left">
+
+      <li class="main-li main-left-click">
+        <img class="img-first" src="img/recover1.png" alt="recover">&nbsp&nbsp&nbsp&nbsp<span>备份恢复</span>
+      </li>
+
+      <li class="main-li">
+        <img class="img-second" src="img/date1.png" alt="date">&nbsp&nbsp&nbsp&nbsp<span>备份日期</span>
+      </li>
+
+      <li class="main-li">
+        <img class="img-third" src="img/example1.png" alt="example">&nbsp&nbsp&nbsp&nbsp<span>备份实例</span>
+      </li>
+
+      <li class="main-li">
+        <img class="img-forth" src="img/install1.png" alt="example">&nbsp&nbsp&nbsp&nbsp<span>备份设置</span>
+      </li>
+
+    </ul>
+
+    <div class="main-right">
+      <div class="row main-div main-div-show form-inline">
+        <div class="first-square">
+          <span class="main-div-span">选择时间范围</span>
+          <input type="text" class="form-control timeFrom datetimepicker1">
+          <span class="main-div-span-first">至</span>
+          <input type="text" class="form-control timeTo datetimepicker1">
+          <button type="button" class="btn first-btn">查询</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>备份开始时间</th>
+              <th>备份策略</th>
+              <th>备份大小</th>
+              <th>备份方法</th>
+              <th>状态</th>
+              <th colspan='2' class="handler">操作</th>
+            </tr>
+          </thead>
+          <tbody class="tbody">
+            
+          </tbody>
+        </table>
+      </div>
+
+      <div class="main-div main-div-hide main-div-second">
+        <div>
+          <span class="main-div-span">全量备份周期</span>
+          <label for="inlineCheckbox1" class="checkbox-inline">
+              <input type="checkbox" name="check" value="1" id="inlineCheckbox1">星期一
+            </label>
+          <label for="inlineCheckbox2" class="checkbox-inline">
+              <input type="checkbox" name="check" value="2" id="inlineCheckbox2">星期二
+            </label>
+          <label for="inlineCheckbox3" class="checkbox-inline">
+              <input type="checkbox" name="check" value="3" id="inlineCheckbox3">星期三
+            </label>
+          <label for="inlineCheckbox4" class="checkbox-inline">
+              <input type="checkbox" name="check" value="4" id="inlineCheckbox4">星期四
+            </label>
+          <label for="inlineCheckbox5" class="checkbox-inline">
+              <input type="checkbox" name="check" value="5" id="inlineCheckbox5">星期五
+            </label>
+          <label for="inlineCheckbox6" class="checkbox-inline">
+              <input type="checkbox" name="check" value="6" id="inlineCheckbox6">星期六
+            </label>
+          <label for="inlineCheckbox7" class="checkbox-inline">
+              <input type="checkbox" name="check" value="7" id="inlineCheckbox7">星期天
+            </label>
+            <span class="errorPrompt">* 请至少选择其中一个</span>
+        </div>
+        <div class="Prompt">
+          <span class="main-div-span">全量备份开始时间</span>
+          <select class="main-div-select" id="selected-first" name="selection1">
+              <option value=""></option>
+          </select>
+          <span>时</span>&nbsp&nbsp&nbsp&nbsp&nbsp
+          <select class="main-div-select" id="selected-second" name="selection1">
+              <option value=""></option>
+          </select>
+          <span>分</span>
+        </div>
+        <div>
+          <span class="attention">注意：如果一次全量备份所需时间大于备份间隔时间，则会跳过下一次备份时间点</span>
+        </div>
+        <button type="button" class="btn last-btn">取消</button>
+        <button type="button" class="btn last-btn second-btn">确认</button>
+      </div>
+
+      <div class="main-div main-div-third main-div-hide">
+        <div>
+          <span class="main-div-span">选择备份方式</span>
+          <select class="main-div-select-third" name="selection">
+              <option value="0" selected>物理备份</option>
+              <option value="1">逻辑备份</option>
+          </select>
+        </div>
+        <div class="Radio main-div-hide">
+          <span class="main-div-span">备份策略</span>
+          <ul class="Radio">
+            <li class="radioSelect radioSelect_first"><img src="img/unselected.png" alt="实例备份">实例备份</li>
+            <li class="radioSelect radioSelect_second"><img src="img/unselected.png" alt="单库备份">单库备份</li>
+          </ul>
+        </div>
+        <div class="input-group main-div-hide">
+          <span class="main-div-span">请选择你的数据库名</span>
+          <input type="text" class="databaseInput">
+          <img src="img/clean.png" alt="clean" class="dbclean"><span class="dbclean">删除</span></span>
+        <br>
+        </div>
+        <div class="group-attention main-div-show span-first">
+          <span class="attention">你确定要立即备份吗？备份任务将会在一分钟左右开始启动</span><br>
+        </div>
+        <div class="group-attention main-div-hide span-second">
+          <span class="attention">
+              提示：请输入正确的数据库名，如果输入的数据库名不存在，执行备份后，不存在的数据库不会备份，备份文件只包含备份成功的数据库
+            </span><br><br>
+          <span class="attention last-attention">你确定要立即备份吗？备份任务将会在一分钟左右开始启动</span><br>
+        </div>
+        <button type="button" class="btn last-btn backupInstance">确认</button>
+      </div>
+
+      <div class="main-div main-div-hide">
+        <div class="install">
+          <span class="main-div-span">精确恢复</span>
+          <input type="text" class="datetimepicker1 timeThree">
+          <span>日</span>
+          <select class="main-div-select" id="selected-third" name="selection1">
+              <option value=""></option>
+          </select>
+          <span>时</span>
+          <select class="main-div-select" id="selected-forth" name="selection1">
+              <option value=""></option>
+          </select>
+          <span>分</span>
+          <select class="main-div-select" id="selected-fifth" name="selection1">
+              <option value=""></option>
+          </select>
+          <span>秒</span>
+          <button type="button" class="btn last-btn datebtn">确认</button>
+        </div>
+        <div>
+          <span class="main-div-span">开启主从复制</span>
+          <ul class="Radio">
+            <li class="radioSelect radioClose"><img src="img/unselected.png" alt="关闭">关闭</li>
+            <li class="radioSelect radioOpen"><img src="img/unselected.png" alt="开启">开启</li>
+          </ul>
+          <span class="errorPrompt2">* 请选择一个按钮</span>
+        </div>
+        <button type="button" class="btn last-btn increasebtn">确认</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="scripts/bootstrap-datepicker.js"></script>
+  <script src="scripts/bootstrap-datepicker.zh-CN.min.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>

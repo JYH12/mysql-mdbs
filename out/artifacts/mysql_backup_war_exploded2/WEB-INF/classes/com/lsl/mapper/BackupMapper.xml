@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lsl.mapper.BackupMapper" >
+  <resultMap id="BaseResultMap" type="com.lsl.po.Backup" >
+    <id column="backupid" property="backupid" jdbcType="INTEGER" />
+    <result column="instanceid" property="instanceid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="strategy" property="strategy" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="host" property="host" jdbcType="VARCHAR" />
+    <result column="backup_name" property="backupName" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    backupid, instanceid, type, size, strategy, time, host, backup_name, url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lsl.po.BackupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from backup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from backup
+    where backupid = #{backupid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from backup
+    where backupid = #{backupid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lsl.po.BackupExample" >
+    delete from backup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lsl.po.Backup" >
+    insert into backup (backupid, instanceid, type, 
+      size, strategy, time, 
+      host, backup_name, url
+      )
+    values (#{backupid,jdbcType=INTEGER}, #{instanceid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{strategy,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{host,jdbcType=VARCHAR}, #{backupName,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lsl.po.Backup" >
+    insert into backup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="backupid != null" >
+        backupid,
+      </if>
+      <if test="instanceid != null" >
+        instanceid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="strategy != null" >
+        strategy,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="host != null" >
+        host,
+      </if>
+      <if test="backupName != null" >
+        backup_name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="backupid != null" >
+        #{backupid,jdbcType=INTEGER},
+      </if>
+      <if test="instanceid != null" >
+        #{instanceid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="strategy != null" >
+        #{strategy,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="host != null" >
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="backupName != null" >
+        #{backupName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lsl.po.BackupExample" resultType="java.lang.Integer" >
+    select count(*) from backup
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update backup
+    <set >
+      <if test="record.backupid != null" >
+        backupid = #{record.backupid,jdbcType=INTEGER},
+      </if>
+      <if test="record.instanceid != null" >
+        instanceid = #{record.instanceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null" >
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.strategy != null" >
+        strategy = #{record.strategy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.host != null" >
+        host = #{record.host,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backupName != null" >
+        backup_name = #{record.backupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update backup
+    set backupid = #{record.backupid,jdbcType=INTEGER},
+      instanceid = #{record.instanceid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=VARCHAR},
+      strategy = #{record.strategy,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      host = #{record.host,jdbcType=VARCHAR},
+      backup_name = #{record.backupName,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lsl.po.Backup" >
+    update backup
+    <set >
+      <if test="instanceid != null" >
+        instanceid = #{instanceid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="strategy != null" >
+        strategy = #{strategy,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="host != null" >
+        host = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="backupName != null" >
+        backup_name = #{backupName,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where backupid = #{backupid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lsl.po.Backup" >
+    update backup
+    set instanceid = #{instanceid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      strategy = #{strategy,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      host = #{host,jdbcType=VARCHAR},
+      backup_name = #{backupName,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where backupid = #{backupid,jdbcType=INTEGER}
+  </update>
+</mapper>

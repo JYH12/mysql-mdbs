@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="100" />
+        <property name="maxIdle" value="20" />
+        <property name="minIdle" value="10" />
+        <property name="blockWhenExhausted" value="true"></property>
+        <property name="maxWaitMillis" value="3000" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+        <property name="minEvictableIdleTimeMillis" value="60000" />
+        <property name="timeBetweenEvictionRunsMillis" value="30000" />
+        <property name="numTestsPerEvictionRun" value="-1" />
+    </bean>
+
+    <!-- JedisCluster -->
+    <bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+        <constructor-arg index="0">
+            <set>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7001" type="int" />
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7002" type="int" />
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7003" type="int" />
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7004" type="int" />
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7005" type="int" />
+                </bean>
+                <bean class="redis.clients.jedis.HostAndPort">
+                    <constructor-arg index="0" value="192.168.25.128" />
+                    <constructor-arg index="1" value="7006" type="int" />
+                </bean>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="1" value="2000" type="int"></constructor-arg>
+        <constructor-arg index="2" value="100" type="int"></constructor-arg>
+        <constructor-arg index="3" ref="jedisPoolConfig"></constructor-arg>
+    </bean>
+</beans>
